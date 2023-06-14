@@ -19,7 +19,6 @@ import { useCallback } from "react";
 //   WebGLRenderer,
 // } from "three";
 // import { IFCLoader } from "web-ifc-three/IFCLoader";
-// import { useCallback } from "react";
 
 const INITIAL_VIEW_STATE = {
   longitude: 106.8229678882143, // Bandung
@@ -78,7 +77,7 @@ export default function App({
   const tile3DLayer = useMemo(() => new Tile3DLayer({
     id: "tile-3d-layer",
     pointSize: 2,
-    data: "/3DHI/test/tileset.json",
+    data: "http://10.20.22.150:9000/3d-assets/3DHI/tileset.json",
     opacity: tileOpacity, onTilesetLoad,
     pickable: true,
     onClick: (info) => console.log(info)
@@ -90,81 +89,81 @@ export default function App({
 
   const onLoad = useCallback(() => {
     setShowButton(true);
-    /*  const map = mapRef.current;
- 
-     const scene = new Scene();
-     const camera = new PerspectiveCamera();
-     const renderer = new WebGLRenderer({
-       // here we inject our Three.js scene into Mapbox
-       canvas: map.getCanvas(),
-       antialias: true,
-     });
-     renderer.autoClear = false;
- 
-     const customLayer = {
-       id: "3d-model",
-       type: "custom",
-       renderingMode: "3d",
- 
-       onAdd: function () {
-         //load model
-         const ifcLoader = new IFCLoader();
-         ifcLoader.ifcManager.setWasmPath("/web-ifc/");
-         ifcLoader.load("/BHI.ifc", function (model) {
-           scene.add(model);
-         });
- 
-         //add lighting
-         const directionalLight = new DirectionalLight(0x404040);
-         const directionalLight2 = new DirectionalLight(0x404040);
-         const ambientLight = new AmbientLight(0x404040, 3);
-         directionalLight.position.set(0, -70, 100).normalize();
-         directionalLight2.position.set(0, 70, 100).normalize();
- 
-         scene.add(directionalLight, directionalLight2, ambientLight);
-       },
- 
-       render: function (gl, matrix) {
-         //apply model transformations
-         const rotationX = new Matrix4().makeRotationAxis(
-           new Vector3(1, 0, 0),
-           modelTransform.rotateX
-         );
-         const rotationY = new Matrix4().makeRotationAxis(
-           new Vector3(0, 1, 0),
-           modelTransform.rotateY
-         );
-         const rotationZ = new Matrix4().makeRotationAxis(
-           new Vector3(0, 0, 1),
-           modelTransform.rotateZ
-         );
- 
-         const m = new Matrix4().fromArray(matrix);
-         const l = new Matrix4()
-           .makeTranslation(
-             modelTransform.translateX,
-             modelTransform.translateY,
-             modelTransform.translateZ
-           )
-           .scale(
-             new Vector3(
-               modelTransform.scale,
-               -modelTransform.scale,
-               modelTransform.scale
-             )
-           )
-           .multiply(rotationX)
-           .multiply(rotationY)
-           .multiply(rotationZ);
- 
-         camera.projectionMatrix = m.multiply(l);
-         renderer.resetState();
-         renderer.render(scene, camera);
-         map.triggerRepaint();
-       },
-     };
- 
-     map.getMap().addLayer(customLayer); */
+    // const map = mapRef.current;
+
+    // const scene = new Scene();
+    // const camera = new PerspectiveCamera();
+    // const renderer = new WebGLRenderer({
+    //   // here we inject our Three.js scene into Mapbox
+    //   canvas: map.getCanvas(),
+    //   antialias: true,
+    // });
+    // renderer.autoClear = false;
+
+    // const customLayer = {
+    //   id: "3d-model",
+    //   type: "custom",
+    //   renderingMode: "3d",
+
+    //   onAdd: function () {
+    //     //load model
+    //     const ifcLoader = new IFCLoader();
+    //     ifcLoader.ifcManager.setWasmPath("/web-ifc/");
+    //     ifcLoader.load("/Home.ifc", function (model) {
+    //       scene.add(model);
+    //     });
+
+    //     //add lighting
+    //     const directionalLight = new DirectionalLight(0x404040);
+    //     const directionalLight2 = new DirectionalLight(0x404040);
+    //     const ambientLight = new AmbientLight(0x404040, 3);
+    //     directionalLight.position.set(0, -70, 100).normalize();
+    //     directionalLight2.position.set(0, 70, 100).normalize();
+
+    //     scene.add(directionalLight, directionalLight2, ambientLight);
+    //   },
+
+    //   render: function (gl, matrix) {
+    //     //apply model transformations
+    //     const rotationX = new Matrix4().makeRotationAxis(
+    //       new Vector3(1, 0, 0),
+    //       modelTransform.rotateX
+    //     );
+    //     const rotationY = new Matrix4().makeRotationAxis(
+    //       new Vector3(0, 1, 0),
+    //       modelTransform.rotateY
+    //     );
+    //     const rotationZ = new Matrix4().makeRotationAxis(
+    //       new Vector3(0, 0, 1),
+    //       modelTransform.rotateZ
+    //     );
+
+    //     const m = new Matrix4().fromArray(matrix);
+    //     const l = new Matrix4()
+    //       .makeTranslation(
+    //         modelTransform.translateX,
+    //         modelTransform.translateY,
+    //         modelTransform.translateZ
+    //       )
+    //       .scale(
+    //         new Vector3(
+    //           modelTransform.scale,
+    //           -modelTransform.scale,
+    //           modelTransform.scale
+    //         )
+    //       )
+    //       .multiply(rotationX)
+    //       .multiply(rotationY)
+    //       .multiply(rotationZ);
+
+    //     camera.projectionMatrix = m.multiply(l);
+    //     renderer.resetState();
+    //     renderer.render(scene, camera);
+    //     map.triggerRepaint();
+    //   },
+    // };
+
+    // map.getMap().addLayer(customLayer);
   }, [])
 
   return (
